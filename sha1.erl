@@ -19,10 +19,10 @@ preprocess(Message) ->
 			true -> Rem + 448;
 			false -> Rem - 64
 		end,
-	<< Message/binary, 128, 0:PaddingSize, Size:8/big-unit:8 >>.
+	<<Message/binary, 128, 0:PaddingSize, Size:8/big-unit:8>>.
 
-process(<< >>, State) -> process_final_state(State);
-process(<< Chunk:64/binary, Rest/binary >>, State) -> process(Rest, process_chunk(Chunk, State)).
+process(<<>>, State) -> process_final_state(State);
+process(<<Chunk:64/binary, Rest/binary>>, State) -> process(Rest, process_chunk(Chunk, State)).
 
 process_chunk(Chunk, {H0, H1, H2, H3, H4} = State) ->
 	Words = extend_chunk(Chunk),
@@ -41,8 +41,8 @@ extend_array(I, A) ->
 
 to_array(Bin) -> to_array(Bin, 0, array:new()).
 
-to_array(<< >>, _I, A) -> A;
-to_array(<< X:32, Rest/binary >>, I, A) -> to_array(Rest, I + 1, array:set(I, X, A)).
+to_array(<<>>, _I, A) -> A;
+to_array(<<X:32, Rest/binary>>, I, A) -> to_array(Rest, I + 1, array:set(I, X, A)).
 
 main_loop(80, _Words, State) -> State;
 
@@ -78,8 +78,8 @@ add(X, Y) -> (X + Y) band ?MASK.
 left_rotate(X, N) when N < 32 -> (X bsl N) band ?MASK bor (X bsr (32 - N)).
 
 run() ->
-	<< "DA39A3EE5E6B4B0D3255BFEF95601890AFD80709" >> = digest(<< >>),
-	<< "2FD4E1C67A2D28FCED849EE1BB76E7391B93EB12" >> = digest(<< "The quick brown fox jumps over the lazy dog" >>),
-	<< "DE9F2C7FD25E1B3AFAD3E85A0BD17D9B100DB4B3" >> = digest(<< "The quick brown fox jumps over the lazy cog" >>),
-	<< "CF23DF2207D99A74FBE169E3EBA035E633B65D94" >> = digest(<< "sha1 this string" >>),
+	<<"DA39A3EE5E6B4B0D3255BFEF95601890AFD80709">> = digest(<<>>),
+	<<"2FD4E1C67A2D28FCED849EE1BB76E7391B93EB12">> = digest(<<"The quick brown fox jumps over the lazy dog">>),
+	<<"DE9F2C7FD25E1B3AFAD3E85A0BD17D9B100DB4B3">> = digest(<<"The quick brown fox jumps over the lazy cog">>),
+	<<"CF23DF2207D99A74FBE169E3EBA035E633B65D94">> = digest(<<"sha1 this string">>),
 	ok.
