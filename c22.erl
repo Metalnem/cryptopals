@@ -5,7 +5,7 @@
 -export([run/0, timestamp/0]).
 
 timestamp() ->
-	{Mega, Secs, _} = now(),
+	{Mega, Secs, _} = erlang:timestamp(),
 	Mega * 1000000 + Secs.
 
 first_int(Seed) ->
