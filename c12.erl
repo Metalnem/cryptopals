@@ -39,7 +39,7 @@ decrypt_impl(Index, Size, KnownBytes, F, BlockSize) ->
 		{C, binary:part(Result, 0, BlockSize)}
 	end, Chars),
 	
-	{C, _ } = lists:keyfind(CurrentBlock, 2, Candidates),
+	{C, _} = lists:keyfind(CurrentBlock, 2, Candidates),
 	decrypt_impl(Index + 1, Size, <<KnownBytes/binary, C>>, F, BlockSize).
 
 determine_secret_size(F) -> determine_secret_size_impl(F, <<>>, byte_size(F(<<>>))).
