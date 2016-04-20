@@ -2,7 +2,7 @@
 %% http://cryptopals.com/sets/4/challenges/28/
 
 -module(c28).
--export([sha1mac/2, run/0]).
+-export([run/0, sha1mac/2]).
 
 sha1mac(Key, Message) -> sha1:digest(<<Key/binary, Message/binary>>).
 

@@ -1,5 +1,5 @@
 -module(sha1).
--export([run/0, digest/1]).
+-export([run/0, digest/1, digest/3]).
 -define(MASK, 16#ffffffff).
 
 digest(Message) ->
@@ -8,10 +8,16 @@ digest(Message) ->
 	H2 = 16#98badcfe,
 	H3 = 16#10325476,
 	H4 = 16#c3d2e1f0,
-	Result = process(preprocess(Message), {H0, H1, H2, H3, H4}),
-	list_to_binary(integer_to_list(Result, 16)).
+	Length = bit_size(Message),
+	Result = process(pad(Message, Length), {H0, H1, H2, H3, H4}),
+	list_to_binary(string:right(integer_to_list(Result, 16), 40, $0)).
 
-preprocess(Message) ->
+digest(Message, PrevState, PrevLength) ->
+	Length = PrevLength + bit_size(Message),
+	Result = process(pad(Message, Length), PrevState),
+	list_to_binary(string:right(integer_to_list(Result, 16), 40, $0)).
+
+pad(Message, Length) ->
 	Size = bit_size(Message),
 	Rem = 512 - (Size + 8) rem 512,
 	PaddingSize =
@@ -19,7 +25,7 @@ preprocess(Message) ->
 			true -> Rem + 448;
 			false -> Rem - 64
 		end,
-	<<Message/binary, 128, 0:PaddingSize, Size:8/big-unit:8>>.
+	<<Message/binary, 128, 0:PaddingSize, Length:8/big-unit:8>>.
 
 process(<<>>, State) -> process_final_state(State);
 process(<<Chunk:64/binary, Rest/binary>>, State) -> process(Rest, process_chunk(Chunk, State)).
