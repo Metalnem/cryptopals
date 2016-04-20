@@ -41,3 +41,4 @@ Erlang solutions to the Matasano Crypto Challenges (<http://cryptopals.com/>).
 26. CTR bitflipping ([problem](http://cryptopals.com/sets/4/challenges/26), [solution](https://github.com/Metalnem/cryptopals/blob/master/c26.erl))
 27. Recover the key from CBC with IV=Key ([problem](http://cryptopals.com/sets/4/challenges/27), [solution](https://github.com/Metalnem/cryptopals/blob/master/c27.erl))
 28. Implement a SHA-1 keyed MAC ([problem](http://cryptopals.com/sets/4/challenges/28), [solution](https://github.com/Metalnem/cryptopals/blob/master/c28.erl))
+29. Break a SHA-1 keyed MAC using length extension ([problem](http://cryptopals.com/sets/4/challenges/29), [solution](https://github.com/Metalnem/cryptopals/blob/master/c29.erl))
