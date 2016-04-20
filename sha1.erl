@@ -1,5 +1,5 @@
 -module(sha1).
--export([run/0, digest/1, digest/3]).
+-export([run/0, pad/2, digest/1, digest/3]).
 -define(MASK, 16#ffffffff).
 
 digest(Message) ->
@@ -8,9 +8,7 @@ digest(Message) ->
 	H2 = 16#98badcfe,
 	H3 = 16#10325476,
 	H4 = 16#c3d2e1f0,
-	Length = bit_size(Message),
-	Result = process(pad(Message, Length), {H0, H1, H2, H3, H4}),
-	list_to_binary(string:right(integer_to_list(Result, 16), 40, $0)).
+	digest(Message, {H0, H1, H2, H3, H4}, 0).
 
 digest(Message, PrevState, PrevLength) ->
 	Length = PrevLength + bit_size(Message),
