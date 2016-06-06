@@ -1,6 +1,7 @@
 # Matasano Crypto Challenges
 
 Erlang solutions to the Matasano Crypto Challenges (<http://cryptopals.com/>).
+Solutions to the remaining challenges are written in Go and can be found [here](https://github.com/Metalnem/cryptopals-go).
 
 ## [Set 1: Basics](http://cryptopals.com/sets/1/)
 
