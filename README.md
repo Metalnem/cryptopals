@@ -3,7 +3,7 @@
 Erlang solutions to the Matasano Crypto Challenges (<http://cryptopals.com/>).
 Solutions to the remaining challenges are written in Go and can be found [here](https://github.com/Metalnem/cryptopals-go).
 
-## [Set 1: Basics](http://cryptopals.com/sets/1/)
+## [Set 1: Basics](http://cryptopals.com/sets/1)
 
 1. Convert hex to base64 ([problem](http://cryptopals.com/sets/1/challenges/1), [solution](https://github.com/Metalnem/cryptopals/blob/master/c01.erl))
 2. Fixed XOR ([problem](http://cryptopals.com/sets/1/challenges/2), [solution](https://github.com/Metalnem/cryptopals/blob/master/c02.erl))
@@ -14,7 +14,7 @@ Solutions to the remaining challenges are written in Go and can be found [here](
 7. AES in ECB mode ([problem](http://cryptopals.com/sets/1/challenges/7), [solution](https://github.com/Metalnem/cryptopals/blob/master/c07.erl))
 8. Detect AES in ECB mode ([problem](http://cryptopals.com/sets/1/challenges/8), [solution](https://github.com/Metalnem/cryptopals/blob/master/c08.erl))
 
-## [Set 2: Block crypto](http://cryptopals.com/sets/2/)
+## [Set 2: Block crypto](http://cryptopals.com/sets/2)
 
 9. Implement PKCS#7 padding ([problem](http://cryptopals.com/sets/2/challenges/9), [solution](https://github.com/Metalnem/cryptopals/blob/master/c09.erl))
 10. Implement CBC mode ([problem](http://cryptopals.com/sets/2/challenges/10), [solution](https://github.com/Metalnem/cryptopals/blob/master/c10.erl))
@@ -25,7 +25,7 @@ Solutions to the remaining challenges are written in Go and can be found [here](
 15. PKCS#7 padding validation ([problem](http://cryptopals.com/sets/2/challenges/15), [solution](https://github.com/Metalnem/cryptopals/blob/master/c15.erl))
 16. CBC bitflipping attacks ([problem](http://cryptopals.com/sets/2/challenges/16), [solution](https://github.com/Metalnem/cryptopals/blob/master/c16.erl))
 
-## [Set 3: Block & stream crypto](http://cryptopals.com/sets/3/)
+## [Set 3: Block & stream crypto](http://cryptopals.com/sets/3)
 
 17. The CBC padding oracle ([problem](http://cryptopals.com/sets/3/challenges/17), [solution](https://github.com/Metalnem/cryptopals/blob/master/c17.erl))
 18. Implement CTR, the stream cipher mode ([problem](http://cryptopals.com/sets/3/challenges/18), [solution](https://github.com/Metalnem/cryptopals/blob/master/c18.erl))
@@ -36,7 +36,7 @@ Solutions to the remaining challenges are written in Go and can be found [here](
 23. Clone an MT19937 RNG from its output ([problem](http://cryptopals.com/sets/3/challenges/23), [solution](https://github.com/Metalnem/cryptopals/blob/master/c23.erl))
 24. Create the MT19937 stream cipher and break it ([problem](http://cryptopals.com/sets/3/challenges/24), [solution](https://github.com/Metalnem/cryptopals/blob/master/c24.erl))
 
-## [Set 4: Stream crypto and randomness](http://cryptopals.com/sets/4/)
+## [Set 4: Stream crypto and randomness](http://cryptopals.com/sets/4)
 
 25. Break "random access read/write" AES CTR ([problem](http://cryptopals.com/sets/4/challenges/25), [solution](https://github.com/Metalnem/cryptopals/blob/master/c25.erl))
 26. CTR bitflipping ([problem](http://cryptopals.com/sets/4/challenges/26), [solution](https://github.com/Metalnem/cryptopals/blob/master/c26.erl))
