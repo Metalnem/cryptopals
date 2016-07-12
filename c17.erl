@@ -45,7 +45,7 @@ decrypt_block(RandomBlock, CiphertextBlock, KnownBytes, F) ->
 	PaddingByte = byte_size(KnownBytes) + 1,
 	Prefix = binary:part(RandomBlock, 0, ?BLOCK_SIZE - PaddingByte),
 	Suffix = c02:xor_buffers(KnownBytes, binary:copy(<<PaddingByte>>, byte_size(KnownBytes))),
-	Candidates = [{X, F(<<Prefix/binary, X, Suffix/binary, CiphertextBlock/binary>> )} || X <- lists:seq(0, 255)],
+	Candidates = [{X, F(<<Prefix/binary, X, Suffix/binary, CiphertextBlock/binary>>)} || X <- lists:seq(0, 255)],
 	{Winner, _} = lists:keyfind(true, 2, Candidates),
 	DecryptedByte = Winner bxor PaddingByte,
 	decrypt_block(RandomBlock, CiphertextBlock, <<DecryptedByte, KnownBytes/binary>>, F).

@@ -22,8 +22,8 @@ is_valid(<<C:1/binary, Rest/binary>>) ->
 		false -> false
 	end.
 
-is_valid_char( <<0:1, _:7>>) -> true;
-is_valid_char( <<1:1, _:7>>) -> false.
+is_valid_char(<<0:1, _:7>>) -> true;
+is_valid_char(<<1:1, _:7>>) -> false.
 
 decrypt_key(Ciphertext, Oracle) ->
 	<<C1:?BLOCK_SIZE/binary, _:(2 * ?BLOCK_SIZE)/binary, Rest/binary>> = Ciphertext,

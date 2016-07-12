@@ -26,7 +26,7 @@ decrypt(F) ->
 
 	SecretSize = byte_size(F(<<>>)) - PaddingSize - SecretPosition,
 	Position = (SecretPosition div ?BLOCK_SIZE + 1) * ?BLOCK_SIZE,
-	
+
 	<<_:KnownBytesSize/unit:8, Result/binary>> = decrypt_impl(F, 0, SecretSize, Position, KnownBytes, PrefixPadding),
 	Result.
 
@@ -47,8 +47,8 @@ decrypt_impl(F, Index, Size, Position, KnownBytes, PrefixPadding) ->
 		Result = F(<<PrefixPadding/binary, Prefix2/binary, C>>),
 		{C, binary:part(Result, Position, ?BLOCK_SIZE)}
 	end, Chars),
-	
-	{C, _ } = lists:keyfind(CurrentBlock, 2, Candidates),
+
+	{C, _} = lists:keyfind(CurrentBlock, 2, Candidates),
 	decrypt_impl(F, Index + 1, Size, Position, <<KnownBytes/binary, C>>, PrefixPadding).
 
 determine_padding_size(F) -> determine_padding_size_impl(F, <<>>, byte_size(F(<<>>))).
@@ -69,7 +69,7 @@ determine_secret_position(F) ->
 determine_secret_position_impl(F, Input) ->
 	Encrypted = F(<<0, Input/binary, 0>>),
 	Blocks = c06:partition(binary:bin_to_list(Encrypted), ?BLOCK_SIZE),
-	
+
 	{Position, _, _} =
 		lists:foldl(fun(Block, {Position, Index, PrevBlock}) ->
 			case Block =:= PrevBlock of
