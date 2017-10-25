@@ -4,14 +4,14 @@
 -module(c05).
 -export([repeating_key_xor/2, run/0]).
 
-repeating_key_xor_impl(<<C, RestPlaintext/binary>>, <<K, RestKey/binary>>, Key ) ->
+repeating_key_xor_impl(<<C, RestPlaintext/binary>>, <<K, RestKey/binary>>, Key) ->
 	<<Part1:4, Part2:4>> = <<(C bxor K)>>,
 	C1 = c02:decimal_to_hex(Part1),
 	C2 = c02:decimal_to_hex(Part2),
 	Result = repeating_key_xor_impl(RestPlaintext, RestKey, Key),
  	<<C1, C2, Result/binary>>;
 
-repeating_key_xor_impl(<<>>, _, _ ) -> <<>>;
+repeating_key_xor_impl(<<>>, _, _) -> <<>>;
 repeating_key_xor_impl(Plaintext, <<>>, Key) -> repeating_key_xor_impl(Plaintext, Key, Key).
 
 repeating_key_xor(Plaintext, Key) -> repeating_key_xor_impl(Plaintext, Key, Key).
